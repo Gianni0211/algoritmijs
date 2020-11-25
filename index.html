@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1. calcolare l'area del cerchio
+      let getAreaCerchio = (raggio) => {
+        return Math.PI * Math.pow(raggio, 2);
+      };
+      /*  console.log(getAreaCerchio(10)); */
+      // 2. calcolare l'ipotenusa di un triangolo rettangolo di cateti 3 e 4
+      let getIpo = (latoA, latoB) => {
+        return Math.pow(latoA, 2) + Math.pow(latoB, 2);
+      };
+      /* console.log(getIpo(3, 4)); */
+      // 3. scrivere una funzione, che assegnati due numeri, generi un numero random, fra i due assegnati compresi
+      let getRandom = (a, b) => {
+        let range = [];
+        for (let i = a; i <= b; i++) {
+          range.push(i);
+        }
+        let index = Math.floor(Math.random() * range.length);
+        return range[index];
+      };
+
+      // 4. scrivere una funzione che trasformi un nome nelle sue iniziali
+      let getInitials = (nome, cognome) => {
+        return `${nome[0]}. ${cognome[0]}.`;
+      };
+      /*  console.log(getInitials("Gianni", "Mondello")); */
+      // 5. assegnati tre numeri ritorna vero se possono essere i lati di un triangolo, falso altrimenti
+      let testIfSide = (a, b, c) => {
+        if (a < b + c && b < a + c && c < b + a) {
+          return true;
+        } else {
+          return false;
+        }
+      };
+      /* console.log(testIfSide(10, 2, 10)); */
+      // 6
+      let getCollatz = (num) => {
+        let res = [num];
+        while (num > 1) {
+          if (num % 2 == 0) {
+            return num / 2;
+          } else {
+            return num * 3 + 1;
+          }
+          res.push(num);
+        }
+        return num;
+      };
+      /* console.log(getCollatz(20)); */
+
+      // 7
+      let fizBuzz = (n) => {
+        for (let i = 1; i <= n; i++) {
+          if (i % 3 === 0 && i % 5 === 0) {
+            console.log(i, "JAVASCRIPT");
+          } else if (i % 3 === 0) {
+            console.log(i, "JAVA");
+          } else if (i % 5 === 0) {
+            console.log(i, "SCRIPT");
+          }
+        }
+      };
+      /* console.log(fizBuzz(100)); */
+
+      // 8
+
+      function fib(n) {
+        let arr = [0, 1];
+        for (let i = 2; i < n + 1; i++) {
+          arr.push(arr[i - 2] + arr[i - 1]);
+        }
+        return arr;
+      }
+      /*  console.log(fib(9)); */
+
+      // 9
+      let getPrime = (n) => {
+        for (let i = 2; i < n; i++) {
+          if (n % i === 0) {
+            return false;
+          }
+        }
+        return n > 1;
+      };
+      /* console.log(getPrime(13)); */
+
+      // 10
+      let countSum = (str) => {
+        let arr = str
+          .split(" ")
+          .filter((el) => +el)
+          .map((el) => +el);
+        return arr.reduce((a, b) => a + b, 0);
+      };
+      // 11
+      let getMaj = (arr, n) => {
+        return arr.filter((el) => el > n);
+      };
+
+      /* console.log(getMaj([1, 2, 3, 4, 6, 9], 2)); */
+      // 12
+      let getHours = (num) => {
+        let arr = num.toString().split("");
+
+        if (arr.length === 2) {
+          arr.splice(1, 0, ":", "0");
+          arr.unshift("0");
+          return arr.join("");
+        } else if (arr.length === 4) {
+          arr.splice(2, 0, ":");
+          return arr.join("");
+        } else if (arr.length === 3) {
+          arr.splice(1, 0, ":");
+          arr.unshift("0");
+          return arr.join("");
+        } else if (arr.length === 1) {
+          arr.push(":00");
+          arr.unshift("0");
+          return arr.join("");
+        }
+      };
+      /* console.log(getHours(34)); */
+
+      // 13
+      let random = (n, min, max) => {
+        let res = [];
+        for (let i = 0; i < n; i++) {
+          res.push(Math.round(Math.random() * (max - min) + min));
+        }
+        return res;
+      };
+      /*  console.log(random(5, 3, 20)); */
+      // 14
+      let getObj = (arr) => {
+        return arr.reduce((a, b) => {
+          a[b[0]] = b[1];
+          return a;
+        }, {});
+      };
+      /* console.log(
+        getObj([
+          ["Nome", "Mario"],
+          ["Cognome", "Rossi"],
+          ["anni", 32],
+        ])
+      ); */
+
+      //15
+      let oggettoStr = (str) => {
+        let res = {};
+        let arr = str.split(" ");
+        for (let i = 0; i < arr.length; i++) {
+          let parola = arr[i];
+          res[parola] = res[parola] ? res[parola] + 1 : 1;
+        }
+        return res;
+      };
+      /* console.log(oggettoStr("questa questa è la mia stringa")); */
+      //16
+      let capitalizer = (str) => {
+        let arr = str.split(" ");
+        return arr.map((el) => el[0].toUpperCase() + el.slice(1)).join(" ");
+      };
+      /*  console.log(capitalizer("ciao il mio nome")); */
+
+      // 17
+
+      let getWovels = (str) => {
+        let reg = /[a,e,i,o,u]/gi;
+        return str.match(reg).length;
+      };
+      /* console.log(getWovels("non sono quante vocali")); */
+
+      // 18
+      let makeSlug = (str) => {
+        let arr = str.split(" ");
+        arr = arr.map((el) => el.toLowerCase());
+        return `/${arr.join("-")}`;
+      };
+      /*  console.log(makeSlug("Ora devo vedere le")); */
+
+      // 19
+      let getLongest = (str) => {
+        let arr = str.split(" ");
+        let lengths = arr.map((el) => {
+          return el.length;
+        });
+        let max = Math.max(...lengths);
+        return arr.filter((el) => el.length === max).join(", ");
+      };
+      /* console.log(getLongest("chissa qual e la parola piu lunga")); */
+
+      // 20
+
+      let getSumOdd = (arr) => {
+        let res = arr.reduce((a, b) => a + b, 0);
+        return res % 2 === 0 ? "Pari" : "Dispari";
+      };
+
+      /* console.log(getSumOdd([1, 5, 3, 7, 8, 2, 2])); */
+
+      // 21
+      let getBaseTwo = (arr) => {
+        let str = arr.join("");
+        return parseInt(str, 2);
+      };
+      /*  console.log(getBaseTwo([1, 0, 1, 0])); */
+
+      // 22
+      let checkIfEquals = (str) => {
+        let arr = str.split("");
+        let y = arr.filter((el) => el === "y");
+        let x = arr.filter((el) => el === "x");
+        return x.length === y.length ? true : false;
+      };
+      /*  console.log(checkIfEquals("xyxyxyxyxy")); */
+
+      // 23
+
+      let swapVowel = (str, vowel) => {
+        let reg = /[a,e,i,o,u]/gi;
+        let arr = str.split("");
+
+        return arr
+          .map((el) => {
+            if (el.match(reg)) {
+              return vowel;
+            } else return el;
+          })
+          .join("");
+      };
+      /*  console.log(
+        swapVowel("ottimo l'ho risolto, test non funziona usa match", "e")
+      ); */
+
+      //24
+
+      let filtNum = (arr) => {
+        return arr.filter((el) => +el);
+      };
+      /*  console.log(filtNum([1, 3, 5, "g", "as", 2])); */
+
+      // 25
+      let getReverse = (str) => {
+        return str.split("").reverse().join("");
+        /*
+        chiusura per i palindromi
+        if (str === str.split('').reverse().join('')){
+          return 'Palindromo';
+        }
+        else {
+          return 'Non è un palindromo';
+        }
+
+        */
+      };
+
+      /*  console.log(getReverse("questa stringa non")); */
+
+      // 26
+
+      let getAvg = (arr) => {
+        let mean = Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
+        let sqrDiff = arr.map((el) => Math.pow(el - mean, 2));
+        let meanRes = Math.round(
+          sqrDiff.reduce((a, b) => a + b, 0) / sqrDiff.length
+        );
+        return [mean, Math.sqrt(meanRes)];
+      };
+      /* console.log(getAvg([2, 4, 5, 1, 2, 3, 7])); */
+
+      // 27
+      let checkIfEven = (arr) => {
+        let sum = arr.reduce((a, b) => a + b, 0);
+        if (sum % 2 === 0) {
+          return sum;
+        } else {
+          return sum / arr.length;
+        }
+      };
+      /*  console.log(checkIfEven([3, 22, 4, 5, 3])); */
+
+      // 28
+
+      let setAlertEven = (num) => {
+        if (num % 2 === 0) {
+          alert("Il numero é pari");
+        } else {
+          alert("Il numero è dispari");
+        }
+      };
+      /* console.log(setAlertEven(2)); */
+
+      // 29
+
+      let getRangeSum = (num) => {
+        let range = [];
+        for (let i = 0; i <= num; i++) {
+          range.push(i);
+        }
+        return range.reduce((a, b) => a + b, 0);
+      };
+      /* console.log(getRangeSum(4)); */
+
+      // 30
+      let proScal = (arr1, arr2) => {
+        if (arr1.length !== arr2.length) return "Array non uguali";
+        let sum = 0;
+        for (let i = 0; i < arr1.length; i++) {
+          sum += arr1[i] * arr2[i];
+        }
+        return sum;
+      };
+      /* console.log(proScal([1, 2, 3], [2, 6, 9])); */
+
+      // 31
+      let caratteri = (str) => {
+        let arr = str.split("");
+        let res = {};
+        for (let i = 0; i < arr.length; i++) {
+          let car = arr[i];
+          res[car] = res[car] ? res[car] + 1 : 1;
+        }
+        return res;
+      };
+      /* console.log(caratteri("casa")); */
+      // 32
+      let getBitsNum = (num) => {
+        let bin = num.toString(2);
+        return bin.split("").filter((el) => el === "1").length;
+      };
+
+      /*  console.log(getBitsNum(248455)); */
+
+      // 33
+      let getNameLength = (arr, l) => {
+        return arr.filter((el) => el.length === l).sort();
+      };
+      /*  console.log(
+        getNameLength(["Gino", "Gianni", "Pippo", "Mariol", "Arialo"], 6)
+      ); */
+
+      // 34
+      let getPrimes = (num) => {
+        function checkIfPrime(n) {
+          for (let i = 2; i < n; i++) {
+            if (n % i === 0) {
+              return false;
+            }
+            return n > 1;
+          }
+        }
+        let range = [];
+        for (let i = 0; i <= num; i++) {
+          range.push(i);
+        }
+        return range.filter((el) => checkIfPrime(el));
+      };
+      /* console.log(getPrimes(13)); */
+
+      //35
+
+      let checkReminders = (num) => {
+        let range = [];
+        for (let i = 0; i <= num; i++) {
+          range.push(i);
+        }
+        return range.filter((el) => num % el === 0);
+      };
+      /* console.log(checkReminders(20)); */
+
+      // 36
+
+      let checkPasword = (str) => {
+        let leng = str.length >= 6;
+        let num = str.match(/\d/gi);
+        return leng && num ? true : false;
+      };
+      /* console.log(checkPasword("questa9")); */
+
+      // 37
+      let opposto = (arr) => {
+        let dup = arr.map((el) => Math.abs(el));
+        let obj = {};
+        for (let i = 0; i < dup.length; i++) {
+          let el = dup[i];
+          obj[el] = obj[el] ? obj[el] + 1 : 1;
+        }
+        return Object.keys(obj).find((el) => obj[el] === 1);
+      };
+      /* console.log(opposto([1, 2, -1, 3, -2, 4, -3])); */
+      // 38
+
+      let getSquare = (num) => {
+        return num
+          .toString()
+          .split("")
+          .map((el) => Math.pow(+el, 2))
+          .join("");
+      };
+      /*       console.log(getSquare(372)); */
+
+      // 39
+      let conc = (arr1, arr2) => {
+        let concat = arr1.concat(arr2);
+
+        return concat
+          .filter((el, i) => {
+            return concat.indexOf(el) == i;
+          })
+          .sort((a, b) => b - a);
+      };
+      /* console.log(conc([2, 1], [1, 2, 3])); */
+      // 40
+      let ordina = (str) => {
+        return str
+          .split(" ")
+          .map((el) => {
+            let num = Number(Array.from(el).filter((i) => Number(i)));
+            return [num, el];
+          })
+          .sort((pair1, pair2) => pair1[0] - pair2[0])
+          .map((el) => el[1])
+          .join(" ");
+      };
+      /* console.log(ordina("is2 Thi1s T4est 3a"));
+       */
+      // 41
+      let iso = (str) => {
+        let arr = str.split("");
+        arr = arr.filter((el, i) => {
+          return arr.indexOf(el) == i;
+        });
+        return arr.join("") == str ? true : false;
+      };
+      /*  console.log(iso("ciao")); */
+
+      //42
+      let diffArr = (arr1, arr2) => {
+        return arr1.filter((el) => {
+          if (arr2.includes(el)) {
+            return null;
+          } else return el;
+        });
+      };
+      /*  console.log(diffArr([1, 2, 5, 6, 7], [1, 2, 6, 10, 12])); */
+
+      // 43
+      let giorniNatale = () => {
+        let date = new Date();
+        let xmas = new Date("25,December,2020");
+        console.log(date, xmas);
+        return Math.round((xmas - date) / (1000 * 60 * 60 * 24));
+      };
+      /* console.log(giorniNatale()); */
+
+      // 44
+      let phone = (arr) => {
+        arr.unshift("(");
+        arr.splice(4, 0, ")");
+        arr.splice(5, 0, " ");
+        arr.splice(9, 0, "-");
+
+        return arr.join("");
+      };
+      /* console.log(phone([1, 3, 5, 2, 6, 7, 3, 6, 2, 5])); */
+
+      // 45
+      let estraneo = (arr) => {
+        result = {};
+        for (var i = 0; i < arr.length; ++i) {
+          if (!result[arr[i]]) result[arr[i]] = 0;
+          ++result[arr[i]];
+        }
+        function getKey(obj, val) {
+          return Object.keys(obj).find((el) => obj[el] === val);
+        }
+        return getKey(result, 1);
+      };
+      /*  console.log(estraneo([3, 3, 12, 3, 3, 3, 3, 3])); */
+
+      // 46
+      /* let trovaVen = (anno) => {
+        let date = new Date(anno);
+        console.log(date);
+      }; */
+      //47
+      let bigFib = (n) => {
+        let arr = [1, 2];
+        for (let i = 2; i <= n; i++) {
+          arr.push(arr[i - 2] + arr[i - 1]);
+        }
+        console.log(arr);
+        let rapporti = [];
+        for (let i = 1; i < n; i++) {
+          rapporti.push(+(arr[i] / arr[i - 1]).toFixed(5));
+        }
+        console.log(rapporti);
+
+        let diff = [];
+        for (let i = 1; i < rapporti.length; i++) {
+          diff.push(+(rapporti[i] - rapporti[i - 1]).toFixed(5));
+        }
+        console.log(diff);
+      };
+
+      /* console.log(bigFib(10)); */
+
+      // 48
+      let pulisci = (str) => {
+        let rem = [
+          "di",
+          "a",
+          "da",
+          "in",
+          "la",
+          "e",
+          "che",
+          "",
+          "i",
+          "che",
+          "nel",
+          "lo",
+        ];
+
+        let clear = str
+          .toLowerCase()
+          .replace(/[^\w\s]|_/g, "")
+          .split(" ")
+          .filter((el) => !rem.includes(el));
+        let unici = Array.from(new Set(clear)).sort();
+        return Object.fromEntries(
+          unici
+            .map((el) => [el, clear.filter((i) => i == el).length])
+            .sort((a, b) => b[1] - a[1])
+        );
+        console.log(unici);
+      };
+      /*  console.log(pulisci("questa è la mia stringa, stringa")); */
+
+      // 49
+      let voti = (obj) => {
+        let votiMedia = Object.values(obj);
+        let media = votiMedia.reduce((a, b) => a + b, 0) / votiMedia.length;
+        let nuovaMedia = media + (media * 10) / 100;
+        let arr = Object.entries(obj);
+        let val = arr.map((el) => {
+          if (el[1] < nuovaMedia) {
+            return [el[0], `Bocciato con ${el[1]}`];
+          } else return [el[0], `Promosso con ${el[1]}`];
+        });
+        let res = Object.fromEntries(val);
+        console.log(res);
+      };
+      console.log(
+        voti({
+          tizio: 4,
+          caio: 5,
+          gianni: 2,
+          simone: 4,
+        })
+      );
+    </script>
+  </body>
+</html>
